@@ -85,6 +85,10 @@ score = 0.6 × semantic_similarity + 0.4 × skill_overlap_ratio
 - Порог отсечения: `score ≥ 0.3`
 - Возвращается топ-10 результатов
 
+## Участие в разработке
+
+Правила работы с ветками и формат коммитов описаны в [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Технологии
 
 - **aiogram 3.x** — Telegram Bot API
