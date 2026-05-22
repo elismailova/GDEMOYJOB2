@@ -2,7 +2,6 @@
 import logging
 from aiogram import Router, F, Bot
 from aiogram.types import Message
-from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from sqlalchemy.ext.asyncio import AsyncSession
 

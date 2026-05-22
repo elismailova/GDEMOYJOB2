@@ -1,7 +1,7 @@
 """Все inline- и reply-клавиатуры бота."""
 from aiogram.types import (
     InlineKeyboardMarkup, InlineKeyboardButton,
-    ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove,
+    ReplyKeyboardMarkup, ReplyKeyboardRemove,
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
 from integrations.trudvsem_api import TRUDVSEM_AREAS, TRUDVSEM_EXPERIENCE, TRUDVSEM_EMPLOYMENT

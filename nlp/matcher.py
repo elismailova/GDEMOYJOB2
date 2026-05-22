@@ -1,7 +1,6 @@
 """Семантическое сопоставление резюме с вакансиями + Skill Gap Analysis."""
 import logging
 from typing import Any
-import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from config import config
