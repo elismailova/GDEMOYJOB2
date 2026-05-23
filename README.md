@@ -89,6 +89,11 @@ score = 0.6 × semantic_similarity + 0.4 × skill_overlap_ratio
 
 Правила работы с ветками и формат коммитов описаны в [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Тестирование
+
+- Автотесты (53 шт.): `pytest -v` — unit + integration тесты NLP и БД
+- Отчёт о ручном тестировании: [TEST_REPORT.md](TEST_REPORT.md) — 7 тест-кейсов, 6 PASS / 1 BLOCKED
+
 ## Технологии
 
 - **aiogram 3.x** — Telegram Bot API
