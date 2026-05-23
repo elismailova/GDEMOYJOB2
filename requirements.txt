@@ -12,3 +12,4 @@ pymorphy2==0.9.1
 pymorphy2-dicts-ru==2.4.417127.4579844
 pydantic==2.9.2
 aiofiles==24.1.0
+asyncpg==0.29.0
