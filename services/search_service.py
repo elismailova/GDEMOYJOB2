@@ -1,4 +1,6 @@
 """Оркестрация: поиск вакансий на Trudvsem.ru → NLP-ранжирование → сохранение истории."""
+import asyncio
+from functools import partial
 from sqlalchemy.ext.asyncio import AsyncSession
 from database.repository import UserRepo, ResumeRepo, SearchHistoryRepo
 from integrations.trudvsem_api import TrudvsemApiClient
@@ -63,7 +65,12 @@ class SearchService:
         if salary:
             vacancies = [v for v in vacancies if _salary_matches(v.get("salary"), salary)]
 
-        ranked = self._matcher.rank(resume.raw_text, resume_skills, vacancies)
+        # NLP-ранжирование блокирует event loop — выносим в поток
+        loop = asyncio.get_event_loop()
+        ranked = await loop.run_in_executor(
+            None,
+            partial(self._matcher.rank, resume.raw_text, resume_skills, vacancies),
+        )
 
         top_score = ranked[0]["score"] if ranked else None
         await self._history_repo.add(
