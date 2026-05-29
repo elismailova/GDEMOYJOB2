@@ -66,12 +66,8 @@ def _normalize_vacancy(v: dict) -> dict:
     job_name = vac.get("job-name") or ""
     region_code = (vac.get("region") or {}).get("region-code") or ""
 
-    # Карточки вакансий удаляются с сайта — ссылаемся на поиск по TrudVsem
-    search_params = quote_plus(job_name)
-    if region_code:
-        vac_url = f"https://trudvsem.ru/vacancies/list?searchString={search_params}&regionCode={region_code}"
-    else:
-        vac_url = f"https://trudvsem.ru/vacancies/list?searchString={search_params}"
+    # Карточки вакансий удаляются с сайта — ссылаемся на поиск (параметр text= работает)
+    vac_url = f"https://trudvsem.ru/vacancy/search?text={quote_plus(job_name)}" if job_name else "https://trudvsem.ru/vacancy/search"
 
     return {
         "id": str(vac_id),
