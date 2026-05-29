@@ -62,9 +62,16 @@ def _normalize_vacancy(v: dict) -> dict:
         req_parts.append(requirement["qualification"])
 
     duty = vac.get("duty") or ""
+    vac_id = vac.get("id", "")
     job_name = vac.get("job-name") or ""
-    # Карточки на trudvsem.ru быстро удаляются — ссылаемся на поиск HH.ru по названию
-    vac_url = f"https://hh.ru/search/vacancy?text={quote_plus(job_name)}" if job_name else "https://hh.ru"
+    region_code = (vac.get("region") or {}).get("region-code") or ""
+
+    # Карточки вакансий удаляются с сайта — ссылаемся на поиск по TrudVsem
+    search_params = quote_plus(job_name)
+    if region_code:
+        vac_url = f"https://trudvsem.ru/vacancies/list?searchString={search_params}&regionCode={region_code}"
+    else:
+        vac_url = f"https://trudvsem.ru/vacancies/list?searchString={search_params}"
 
     return {
         "id": str(vac_id),
