@@ -67,7 +67,7 @@ GDEMOYJOB/
 ├── database/
 │   ├── models.py               # SQLAlchemy модели (User, Resume, SearchHistory)
 │   ├── repository.py           # CRUD-операции
-│   └── engine.py               # Async SQLAlchemy engine
+│   └── engine.py               # Async SQLAlchemy engine (SQLite локально / PostgreSQL на Railway)
 ├── tests/                      # Автотесты (53 шт.)
 │   ├── conftest.py             # Мок sentence-transformers для CI
 │   ├── test_analyzer.py        # Unit-тесты NLP-анализатора
@@ -152,7 +152,9 @@ ruff check .
 |------------|-----------|
 | **aiogram 3.13** | Telegram Bot API |
 | **sentence-transformers** | Многоязычные эмбеддинги для семантического поиска |
-| **SQLAlchemy 2.0 async** + **aiosqlite** | Асинхронная работа с БД |
+| **SQLAlchemy 2.0 async** | Асинхронная ORM |
+| **PostgreSQL** + **asyncpg** | База данных (production, Railway) |
+| **aiosqlite** | База данных (локальная разработка) |
 | **PyMuPDF** | Парсинг PDF |
 | **python-docx** | Парсинг DOCX |
 | **aiohttp** | HTTP-клиент для API |
