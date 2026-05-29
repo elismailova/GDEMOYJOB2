@@ -76,12 +76,15 @@ GDEMOYJOB/
 ├── .github/workflows/
 │   └── ci.yml                  # CI/CD: lint (ruff) + тесты (pytest)
 ├── config.py                   # Конфигурация из .env
+├── Dockerfile                  # Образ для деплоя на Railway / Docker
+├── .dockerignore               # Исключения для Docker-сборки
 ├── pytest.ini                  # Настройки pytest
 ├── ruff.toml                   # Настройки линтера ruff
 ├── requirements.txt            # Зависимости проекта
 ├── requirements-dev.txt        # Зависимости для разработки (pytest, ruff)
 ├── requirements-ci.txt         # Лёгкие зависимости для CI (без ML-моделей)
 ├── CONTRIBUTING.md             # Git Flow и Conventional Commits
+├── DEPLOYMENT.md               # Инструкция по развёртыванию
 └── TEST_REPORT.md              # Отчёт о ручном тестировании
 ```
 
@@ -132,6 +135,10 @@ ruff check .
 - CI/CD: каждый push автоматически проверяется на GitHub Actions
 
 ---
+
+## Развёртывание
+
+Инструкция по локальному запуску и деплою на Railway: [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Участие в разработке
 

@@ -20,9 +20,9 @@
 ```
 master
   └── develop
-        ├── feature/nlp-skill-gap    → PR → develop
-        ├── feature/hh-pagination    → PR → develop
-        └── fix/resume-upload-error  → PR → develop
+        ├── feature/nlp-skill-gap      → PR → develop
+        ├── feature/trudvsem-filters   → PR → develop
+        └── fix/resume-upload-error    → PR → develop
                                            ↓
                                     release/1.1.0 → PR → master + тег v1.1.0
 ```
@@ -96,7 +96,7 @@ refactor(db): вынести CRUD-операции в отдельный реп�
 
 chore(deps): обновить aiogram до 3.7.0
 
-feat(api)!: изменить формат ответа HH.ru — BREAKING CHANGE
+feat(api)!: изменить формат ответа TrudVsem — BREAKING CHANGE
 
 BREAKING CHANGE: поле salary теперь возвращает объект вместо числа
 ```
