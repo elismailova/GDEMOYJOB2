@@ -13,20 +13,35 @@ class ResumeService:
         self._analyzer = ResumeAnalyzer()
 
     async def process_file(
-        self, telegram_id: int, file_bytes: bytes, filename: str
+        self,
+        telegram_id: int,
+        file_bytes: bytes,
+        filename: str,
+        username: str | None = None,
+        first_name: str | None = None,
     ) -> dict:
         """Извлекает текст, анализирует резюме и сохраняет в БД."""
         raw_text = extract_text(file_bytes, filename)
-        return await self._save_and_analyze(telegram_id, raw_text)
+        return await self._save_and_analyze(telegram_id, raw_text, username, first_name)
 
-    async def process_text(self, telegram_id: int, text: str) -> dict:
+    async def process_text(
+        self,
+        telegram_id: int,
+        text: str,
+        username: str | None = None,
+        first_name: str | None = None,
+    ) -> dict:
         """Сохраняет и анализирует резюме, введённое текстом."""
-        return await self._save_and_analyze(telegram_id, text)
+        return await self._save_and_analyze(telegram_id, text, username, first_name)
 
-    async def _save_and_analyze(self, telegram_id: int, raw_text: str) -> dict:
-        user = await self._user_repo.get_by_telegram_id(telegram_id)
-        if not user:
-            raise RuntimeError("Пользователь не найден. Используйте /start")
+    async def _save_and_analyze(
+        self,
+        telegram_id: int,
+        raw_text: str,
+        username: str | None = None,
+        first_name: str | None = None,
+    ) -> dict:
+        user, _ = await self._user_repo.get_or_create(telegram_id, username, first_name)
 
         parsed = self._analyzer.analyze(raw_text)
         await self._resume_repo.upsert(user.id, raw_text, parsed)

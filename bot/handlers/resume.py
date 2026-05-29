@@ -62,6 +62,8 @@ async def handle_resume_file(
             telegram_id=message.from_user.id,
             file_bytes=raw_bytes,
             filename=filename,
+            username=message.from_user.username,
+            first_name=message.from_user.first_name,
         )
         await _send_parse_result(message, parsed)
         await state.clear()
@@ -104,6 +106,8 @@ async def handle_resume_text(
         parsed = await service.process_text(
             telegram_id=message.from_user.id,
             text=text,
+            username=message.from_user.username,
+            first_name=message.from_user.first_name,
         )
         await _send_parse_result(message, parsed)
         await state.clear()

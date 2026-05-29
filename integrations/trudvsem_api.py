@@ -2,6 +2,7 @@
 import asyncio
 import logging
 from typing import Any
+from urllib.parse import quote_plus
 import aiohttp
 
 logger = logging.getLogger(__name__)
@@ -61,8 +62,9 @@ def _normalize_vacancy(v: dict) -> dict:
         req_parts.append(requirement["qualification"])
 
     duty = vac.get("duty") or ""
-    vac_id = vac.get("id", "")
-    vac_url = vac.get("url") or f"https://trudvsem.ru/vacancy/card/{vac_id}"
+    job_name = vac.get("job-name") or ""
+    # Карточки на trudvsem.ru быстро удаляются — ссылаемся на поиск HH.ru по названию
+    vac_url = f"https://hh.ru/search/vacancy?text={quote_plus(job_name)}" if job_name else "https://hh.ru"
 
     return {
         "id": str(vac_id),
