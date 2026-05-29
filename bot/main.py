@@ -1,4 +1,9 @@
 """Точка входа: инициализация бота, регистрация роутеров и запуск polling."""
+import os
+# Модель уже в кэше — запрещаем обращение к HuggingFace при каждом запуске
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+
 import asyncio
 import logging
 import sys
