@@ -92,7 +92,7 @@ class Keyboards:
             nav.append(InlineKeyboardButton(text="След. ▶", callback_data=f"vac:{idx + 1}"))
         if nav:
             builder.row(*nav)
-        builder.row(InlineKeyboardButton(text="🔍 Найти похожие на TrudVsem", url=hh_url))
+        builder.row(InlineKeyboardButton(text="🔗 Открыть вакансию", url=hh_url))
         builder.row(
             InlineKeyboardButton(text="📊 Анализ навыков", callback_data="skill_gap"),
             InlineKeyboardButton(text="◀ К списку", callback_data="results_list"),

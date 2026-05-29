@@ -64,10 +64,12 @@ def _normalize_vacancy(v: dict) -> dict:
     duty = vac.get("duty") or ""
     vac_id = vac.get("id", "")
     job_name = vac.get("job-name") or ""
-    region_code = (vac.get("region") or {}).get("region-code") or ""
 
-    # Карточки вакансий удаляются с сайта — ссылаемся на поиск (параметр text= работает)
-    vac_url = f"https://trudvsem.ru/vacancy/search?text={quote_plus(job_name)}" if job_name else "https://trudvsem.ru/vacancy/search"
+    # API возвращает vac_url формата /vacancy/card/{companycode}/{uuid} — рабочая ссылка
+    vac_url = (
+        vac.get("vac_url")
+        or f"https://trudvsem.ru/vacancy/search?text={quote_plus(job_name)}"
+    )
 
     return {
         "id": str(vac_id),
